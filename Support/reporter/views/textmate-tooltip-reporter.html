@@ -1,0 +1,5 @@
+{{#if numErrors}}JSHint found {{numErrors}} problems:
+
+{{#each errors}}{{#each this}}Line {{line}}: {{{message}}}
+{{/each}}{{/each}}
+{{else}}Lint-free!{{/if}}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>JSHint</title>
+		<style>
+		{{{style}}}
+		</style>
+	</head>
+	<body>
+		<header>
+			{{#if numErrors}}
+				JSHint found {{numErrors}} problems
+			{{else}}
+				Lint-free!
+			{{/if}}
+			<a href="https://github.com/bodnaristvan/JSHint.tmbundle" class="info" title="About JSHint.tmbundle">info</a>
+		</header>
+
+		{{#if numErrors}}
+			<ul class="problems">
+				{{#each errors}}
+					{{#each this}}
+						<li>
+							<a href="txmt://open?url=file://{{file}}&line={{line}}&column={{column}}">
+								<span class="location">Line {{line}}</span>
+								<span class="desc">{{message}}</span>
+								<pre><code>{{evidence}}</code></pre>
+							</a>
+						</li>
+					{{/each}}
+				{{/each}}
+			</ul>
+		{{else}}
+			<div class="results-success">
+				Lint-free!
+			</div>
+		{{/if}}
+	</body>
+</html>
