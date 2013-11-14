@@ -3,6 +3,8 @@ JSHint.tmbundle
 
 This is a TextMate 2 JSHint plugin using the npm package version of JSHint.
 
+![Screenshot of JSHint.tmbundle running in TextMate](http://f.cl.ly/items/1G3X0o3x0z0D2d323T3x/Screen%20Shot%202013-11-14%20at%201.27.33%20AM.png)
+
 Originally forked from the [JSHint.tmbundle by oost](https://github.com/oost/JSHint.tmbundle) to make a few bugfixes, but ended up creating a full rewrite instead.
 
 [jslintmate]: https://github.com/rondevera/jslintmate
