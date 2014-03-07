@@ -6,8 +6,16 @@
 		<style>
 		{{{style}}}
 		</style>
+		<script type="text/javascript">
+			var jump_to_first_problem = function() {
+				var link = document.body.querySelector("ul.problems a.problem:nth-of-type(1)");
+				if (link === null)
+					return;
+				window.location = link.href;
+			}
+		</script>
 	</head>
-	<body>
+	<body onload="jump_to_first_problem();">
 		<header>
 			{{#if numErrors}}
 				JSHint found {{numErrors}} problems
@@ -22,7 +30,7 @@
 				{{#each errors}}
 					{{#each this}}
 						<li>
-							<a href="txmt://open?url=file://{{file}}&line={{line}}&column={{column}}">
+							<a class="problem" href="txmt://open?url=file://{{file}}&line={{line}}&column={{column}}">
 								<span class="location">Line {{line}}</span>
 								<span class="desc">{{message}}</span>
 								<pre><code>{{evidence}}</code></pre>
