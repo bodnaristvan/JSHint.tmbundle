@@ -36,3 +36,16 @@ Bundle will look for the following places for JSHint configuration files:
  - `${HOME}/.jshintrc`
  - `${TM_PROJECT_DIRECTORY}/.jshintrc`
  - `${TM_JSHINT_CONFIG}`
+
+### Presentation ###
+
+By default, Textmate2 shows any bundle output in a popup window, but also supports a sidebar as shown in the screenshot above.
+
+To switch to using sidebar..
+
+`defaults write com.macromates.TextMate.preview htmlOutputPlacement right`
+
+Or switch back to window
+
+`defaults write com.macromates.TextMate.preview htmlOutputPlacement window`
+
