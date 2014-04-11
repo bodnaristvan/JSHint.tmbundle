@@ -9,19 +9,25 @@
 [[ -f "${TM_SUPPORT_PATH}/lib/bash_init.sh" ]] &amp;&amp; . "${TM_SUPPORT_PATH}/lib/bash_init.sh"
 
 if [[ -e "$TM_DIRECTORY/.jshintrc" ]]
-   then JSHINT_CONFIG="$TM_DIRECTORY/.jshintrc"
-fi
+  then JSHINT_CONFIG="$TM_DIRECTORY/.jshintrc"
+  
+elif [[ -e "$TM_DIRECTORY/../.jshintrc" ]]
+  then JSHINT_CONFIG="$TM_DIRECTORY/../.jshintrc"
 
-if [[ -e "$HOME/.jshintrc" ]]
-   then JSHINT_CONFIG="$HOME/.jshintrc"
-fi
+elif [[ -e "$TM_DIRECTORY/../../.jshintrc" ]]
+  then JSHINT_CONFIG="$TM_DIRECTORY/../../.jshintrc"
 
-if [[ -e "$TM_PROJECT_DIRECTORY/.jshintrc" ]]
-   then JSHINT_CONFIG="$TM_PROJECT_DIRECTORY/.jshintrc"
-fi
+elif [[ -e "$TM_DIRECTORY/../../../.jshintrc" ]]
+  then JSHINT_CONFIG="$TM_DIRECTORY/../../../.jshintrc"
 
-if [[ -e $TM_JSHINT_CONFIG ]]
-   then JSHINT_CONFIG=$TM_JSHINT_CONFIG
+elif [[ -e "$HOME/.jshintrc" ]]
+  then JSHINT_CONFIG="$HOME/.jshintrc"
+
+elif [[ -e "$TM_PROJECT_DIRECTORY/.jshintrc" ]]
+  then JSHINT_CONFIG="$TM_PROJECT_DIRECTORY/.jshintrc"
+
+elif [[ -e $TM_JSHINT_CONFIG ]]
+  then JSHINT_CONFIG=$TM_JSHINT_CONFIG
 fi
 
 # run nodelint on the current file and output as a tool tip summary

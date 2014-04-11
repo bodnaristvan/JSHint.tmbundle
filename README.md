@@ -30,12 +30,13 @@ Originally forked from the [JSHint.tmbundle by oost](https://github.com/oost/JSH
 
 ### Configuration ###
 
-Bundle will look for the following places for JSHint configuration files:
+The bundle will use the first JSHint configuration file found in the following sequence of directories:
 
- - default jshintrc provided with the bundle
- - `${HOME}/.jshintrc`
- - `${TM_PROJECT_DIRECTORY}/.jshintrc`
- - `${TM_JSHINT_CONFIG}`
+1. Local `.jshintrc` or ../. , ../../. , ../../../.
+2. `$HOME/.jshintrc`
+3. `${TM_PROJECT_DIRECTORY}/.jshintrc`
+4. `${TM_JSHINT_CONFIG}`
+5. Default `.jshintrc` provided with the bundle
 
 ### Presentation ###
 
