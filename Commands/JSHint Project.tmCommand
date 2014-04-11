@@ -6,35 +6,43 @@
 	<string>nop</string>
 	<key>command</key>
 	<string>#!/usr/bin/env bash
-	[[ -f "${TM_SUPPORT_PATH}/lib/bash_init.sh" ]] &amp;&amp; . "${TM_SUPPORT_PATH}/lib/bash_init.sh"
+[[ -f "${TM_SUPPORT_PATH}/lib/bash_init.sh" ]] &amp;&amp; . "${TM_SUPPORT_PATH}/lib/bash_init.sh"
 
-	if [[ -e "$TM_DIRECTORY/.jshintrc" ]]
-	   then JSHINT_CONFIG="$TM_DIRECTORY/.jshintrc"
-	fi
+if [[ -e "$TM_DIRECTORY/.jshintrc" ]]
+  then JSHINT_CONFIG="$TM_DIRECTORY/.jshintrc"
+  
+elif [[ -e "$TM_DIRECTORY/../.jshintrc" ]]
+  then JSHINT_CONFIG="$TM_DIRECTORY/../.jshintrc"
 
-	if [[ -e "$HOME/.jshintrc" ]]
-	   then JSHINT_CONFIG="$HOME/.jshintrc"
-	fi
+elif [[ -e "$TM_DIRECTORY/../../.jshintrc" ]]
+  then JSHINT_CONFIG="$TM_DIRECTORY/../../.jshintrc"
 
-	if [[ -e "$TM_PROJECT_DIRECTORY/.jshintrc" ]]
-	   then JSHINT_CONFIG="$TM_PROJECT_DIRECTORY/.jshintrc"
-	fi
+elif [[ -e "$TM_DIRECTORY/../../../.jshintrc" ]]
+  then JSHINT_CONFIG="$TM_DIRECTORY/../../../.jshintrc"
 
-	if [[ -e $TM_JSHINT_CONFIG ]]
-	   then JSHINT_CONFIG=$TM_JSHINT_CONFIG
-	fi
+elif [[ -e "$HOME/.jshintrc" ]]
+  then JSHINT_CONFIG="$HOME/.jshintrc"
 
-	# run nodelint on the current file and output as a tool tip summary
-	cd "${TM_BUNDLE_SUPPORT}/reporter/"
+elif [[ -e "$TM_PROJECT_DIRECTORY/.jshintrc" ]]
+  then JSHINT_CONFIG="$TM_PROJECT_DIRECTORY/.jshintrc"
 
-	node index.js --reporter textmate-reporter.js --config "${JSHINT_CONFIG}" "${TM_PROJECT_DIRECTORY}"
+elif [[ -e $TM_JSHINT_CONFIG ]]
+  then JSHINT_CONFIG=$TM_JSHINT_CONFIG
+fi
 
-	exit 0
-	</string>
+# run nodelint on the current file and output as a tool tip summary
+cd "${TM_BUNDLE_SUPPORT}/reporter/"
+
+node index.js --reporter textmate-reporter.js --config "${JSHINT_CONFIG}" "${TM_PROJECT_DIRECTORY}"
+
+exit 0
+</string>
 	<key>input</key>
 	<string>selection</string>
 	<key>inputFormat</key>
 	<string>text</string>
+	<key>isDisabled</key>
+	<true/>
 	<key>name</key>
 	<string>JSHint Project</string>
 	<key>outputCaret</key>
@@ -47,7 +55,5 @@
 	<string>73C5F2AE-F361-4CE1-ACE7-6FF0A46B111A</string>
 	<key>version</key>
 	<integer>2</integer>
-	<key>isDisabled</key>
-	<true/>
 </dict>
 </plist>
