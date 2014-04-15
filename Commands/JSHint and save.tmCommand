@@ -6,31 +6,27 @@
 	<string>saveActiveFile</string>
 	<key>command</key>
 	<string>#!/usr/bin/env bash
-[[ -f "${TM_SUPPORT_PATH}/lib/bash_init.sh" ]] &amp;&amp; . "${TM_SUPPORT_PATH}/lib/bash_init.sh"
+	[[ -f "${TM_SUPPORT_PATH}/lib/bash_init.sh" ]] &amp;&amp; . "${TM_SUPPORT_PATH}/lib/bash_init.sh"
 
-if [[ -e "$TM_DIRECTORY/.jshintrc" ]]
-   then JSHINT_CONFIG="$TM_DIRECTORY/.jshintrc"
-fi
+	# Command to execute to find config file
+	CONFIG_FINDER="${TM_BUNDLE_SUPPORT}/config-finder/config-finder.sh"
 
-if [[ -e "$HOME/.jshintrc" ]]
-   then JSHINT_CONFIG="$HOME/.jshintrc"
-fi
+	# Name of the configuration file
+	JSHINT_RCFILE=".jshintrc"
 
-if [[ -e "$TM_PROJECT_DIRECTORY/.jshintrc" ]]
-   then JSHINT_CONFIG="$TM_PROJECT_DIRECTORY/.jshintrc"
-fi
+	# Get path to jshintrc file
+	JSHINT_CONFIG=`"${TM_BUNDLE_SUPPORT}/config-finder/config-finder.sh" -f "${JSHINT_RCFILE}" "${TM_FILEPATH}" "${HOME}" "${TM_DIRECTORY}"`
+	if [[ ! -e "${JSHINT_CONFIG}" ]]
+	   then 
+	   JSHINT_CONFIG=${TM_JSHINT_CONFIG}
+	fi
+	
+	# Run linter and show minimal output in a tool tip summary
+	cd "${TM_BUNDLE_SUPPORT}/reporter/"
+	node index.js --reporter textmate-tooltip-reporter.js --config "${JSHINT_CONFIG}" "${TM_FILEPATH}"
 
-if [[ -e $TM_JSHINT_CONFIG ]]
-   then JSHINT_CONFIG=$TM_JSHINT_CONFIG
-fi
-
-# run nodelint on the current file and output as a tool tip summary
-cd "${TM_BUNDLE_SUPPORT}/reporter/"
-
-node index.js --reporter textmate-tooltip-reporter.js --config "${JSHINT_CONFIG}" "${TM_FILEPATH}"
-
-exit 0
-</string>
+	exit 0
+	</string>
 	<key>input</key>
 	<string>document</string>
 	<key>inputFormat</key>
