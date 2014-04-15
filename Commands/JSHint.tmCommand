@@ -14,11 +14,12 @@
 	# Name of the configuration file
 	JSHINT_RCFILE=".jshintrc"
 
-	# Get path to jshintrc file
-	JSHINT_CONFIG=`"${TM_BUNDLE_SUPPORT}/config-finder/config-finder.sh" -f "${JSHINT_RCFILE}" "${TM_FILEPATH}" "${HOME}" "${TM_DIRECTORY}"`
-	if [[ ! -e "${JSHINT_CONFIG}" ]]
-	   then 
-	   JSHINT_CONFIG=${TM_JSHINT_CONFIG}
+	# Get path to jshintrc file if TM_JSHINT_CONFIG is not specified
+	if [[ -e "${TM_JSHINT_CONFIG}" ]]
+	then 
+		JSHINT_CONFIG=${TM_JSHINT_CONFIG}
+	else
+		JSHINT_CONFIG=`"${TM_BUNDLE_SUPPORT}/config-finder/config-finder.sh" -f "${JSHINT_RCFILE}" "${TM_FILEPATH}" "${HOME}" "${TM_DIRECTORY}"`
 	fi
 	
 	# Run linter and show the output in a textmate window
