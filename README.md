@@ -30,13 +30,12 @@ Originally forked from the [JSHint.tmbundle by oost](https://github.com/oost/JSH
 
 ### Configuration ###
 
-Bundle will look for the following places for JSHint configuration files:
+Bundle will use the .jshintrc location set in `${TM_JSHINT_CONFIG}`, or look for it in the following places:
 
- - default jshintrc provided with the bundle
+ - directory of currently opened file and all parent directories until one is found
  - `${HOME}/.jshintrc`
- - `${TM_PROJECT_DIRECTORY}/.jshintrc`
- - `${TM_JSHINT_CONFIG}`
-
+ - default jshintrc provided with the bundle
+ 
 ### Presentation ###
 
 By default, Textmate2 shows any bundle output in a popup window, but also supports a sidebar as shown in the screenshot above.
