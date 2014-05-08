@@ -27,6 +27,7 @@ Originally forked from the [JSHint.tmbundle by oost](https://github.com/oost/JSH
 2.  Go to the directory `cd JSHint.tmbundle`.
 3.  Run `make`
 4.  Run `open .` in the same directory to install the bundle
+5.  If you run into problems with node not found while running the plugin, check out this comment: https://github.com/bodnaristvan/JSHint.tmbundle/issues/1#issuecomment-42533685
 
 ### Configuration ###
 
