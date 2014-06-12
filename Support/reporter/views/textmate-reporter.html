@@ -17,12 +17,19 @@
 	</head>
 	<body onload="jump_to_first_problem();">
 		<header>
-			{{#if numErrors}}
+			<div class="summary">
+				<a class="problem" href="txmt://open?url=file://{{config.targetFile}}" title="Open target file">
+				{{#if numErrors}}
 				JSHint found {{numErrors}} problems
-			{{else}}
+				{{else}}
 				Lint-free!
-			{{/if}}
-			<a href="https://github.com/bodnaristvan/JSHint.tmbundle" class="info" title="About JSHint.tmbundle">info</a>
+				{{/if}}
+				</a>
+				<a href="https://github.com/bodnaristvan/JSHint.tmbundle" target="_blank" class="info" title="About JSHint.tmbundle">info</a>
+			</div>
+			<div class="additional">
+				<a href="txmt://open?url=file://{{config.configFile}}" title="Open config file">{{config.configFile}}</a>
+			</div>
 		</header>
 
 		{{#if numErrors}}
@@ -31,7 +38,7 @@
 					{{#each this}}
 						<li>
 							<a class="problem" href="txmt://open?url=file://{{file}}&line={{line}}&column={{column}}">
-								<span class="location">Line {{line}}</span>
+								<span class="location">Line {{line}}, column {{column}}</span>
 								<span class="desc">{{message}}</span>
 								<pre><code>{{evidence}}</code></pre>
 							</a>
