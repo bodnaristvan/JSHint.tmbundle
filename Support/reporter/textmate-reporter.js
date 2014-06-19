@@ -4,7 +4,8 @@
 
 	var fs = require('fs'),
 		Handlebars = require('handlebars'),
-		JshintParser = require('./jshint-parser');
+		JshintParser = require('./jshint-parser'),
+		config = require('./config');
 
 	function render(errors, numErrors) {
 		var style = fs.readFileSync('./views/textmate-reporter.css', 'utf8'),
@@ -12,6 +13,7 @@
 			template = Handlebars.compile(content);
 
 		process.stdout.write(template({
+			config: config,
 			errors: errors,
 			numErrors: numErrors,
 			style: style
