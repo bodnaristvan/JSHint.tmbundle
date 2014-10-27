@@ -3,6 +3,8 @@ JSHint.tmbundle
 
 This is a TextMate 2 JSHint plugin using the npm package version of JSHint.
 
+Note: since JSHint stopped caring about style issues, I've decided to create a more generic javascript hinter bundle, that uses both JSHint and JSCS. The project is called [JavascriptHinter.tmbundle](https://github.com/bodnaristvan/JavascriptHinter.tmbundle), it uses the system installed version of jshint and jscs, and displays hint warnings in the gutter, supported by TextMate in the latest beta versions. I've tried to keep the functionality of this project to make switching as painless as possible, but let me know if you run into troubles using the new one!
+
 ![Screenshot of JSHint.tmbundle running in TextMate](http://f.cl.ly/items/1G3X0o3x0z0D2d323T3x/Screen%20Shot%202013-11-14%20at%201.27.33%20AM.png)
 
 Originally forked from the [JSHint.tmbundle by oost](https://github.com/oost/JSHint.tmbundle) to make a few bugfixes, but ended up creating a full rewrite instead.
