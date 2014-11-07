@@ -85,6 +85,21 @@ header .additional {
 	padding: 0.5em;
 	text-decoration: none;
 }
+
+.problems .errorcode {
+	color: #000088;
+	font-size: 0.9em;
+	white-space: nowrap;
+	margin-left: 5px;
+	border-bottom: none;
+	float: right;
+}
+
+.problems .errorcode.apifail {
+	background-color: red;
+	color: white;
+}
+
 .problems .location {
 	float: right;
 	color: #b5372d;
@@ -124,6 +139,41 @@ header .additional {
 .problems a:active code {
 	background-color: #c0c0c0;
 	transition: none;
+}
+
+.errorinfo {
+	margin: 10px;
+	padding: 10px;
+	color: #666;
+	background-color: white;
+	border: 1px dotted black;
+}
+
+.errorinfo code {
+	background-color: #eee;
+	color: #449;
+}
+
+.errorinfo strong {
+	color: #555;
+}
+
+.errorinfo h3 {
+	color: #555;
+	text-decoration: underline;
+}
+
+.errorinfo a {
+	color: #55F;
+	text-decoration: underline;
+	border: 0;
+	padding: 0;
+	display: inline;
+}
+
+.errorinfo .errorinfo_header .sitelink {
+	float: right;
+	border: 0;
 }
 
 /*** Success check ***/

@@ -2,7 +2,8 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
-		<title>JSHint</title>
+		<title>JSHint</title> 
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<style>
 		{{{style}}}
 		</style>
@@ -13,6 +14,50 @@
 					return;
 				window.location = link.href;
 			}
+		</script>
+
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$(document).on("click", "#close_errorinfo", function(e) {
+					$("div.errorinfo").remove();
+				});
+				
+				$("span.errorcode").on("click", function(e) {
+					// get code
+					var code = $(this).data("errorcode");
+						
+					if (code) {
+						if ($("div.errorinfo[data-errorcode="+code+"]").length >= 1) {
+							$("div.errorinfo").remove();
+						}
+						else
+						{
+							var codelink = $(this);
+							$("div.errorinfo").remove();
+							$.ajax({
+								url: "http://api.jslinterrors.com/explain",
+								data: { m: code, format: "html" },
+								success: function(data) {
+									var author = (data.author && data.author.name) ? data.author.name : ""; 
+									var sitelink = data.link; 
+									var body = '<div class="errorinfo" data-errorcode="' + code + '">' + 
+										'<div class="errorinfo_header">' + 
+											'<button id="close_errorinfo">Close Explanation</button>' + 
+											(data.link ? '<a class="sitelink" target="_blank" href="'+data.link+'">Article from  ' + (author ? author+" / " : "") + 'jslinterrors.com</a>' : '') + 
+										'</div>' + 
+										data.explanation + '</div>'
+									codelink.closest(".probrow").after(body);
+									$(".errorinfo a").attr("target", "_blank");
+								},
+								error: function() {
+									codelink.addClass("apifail");
+								},
+								dataType: 'json'
+							});
+						};
+					}
+				});
+			});
 		</script>
 	</head>
 	<body onload="jump_to_first_problem();">
@@ -37,11 +82,14 @@
 				{{#each errors}}
 					{{#each this}}
 						<li>
-							<a class="problem" href="txmt://open?url=file://{{file}}&line={{line}}&column={{column}}">
-								<span class="location">Line {{line}}, column {{column}}</span>
-								<span class="desc">{{message}}</span>
-								<pre><code>{{evidence}}</code></pre>
-							</a>
+							<div class="probrow">
+								<a class="problem" href="txmt://open?url=file://{{file}}&line={{line}}&column={{column}}">
+									<span class="errorcode" data-errorcode="{{code}}">{{code}}</span>
+									<span class="location">(line {{line}}, col {{column}})</span>
+									<span class="desc">{{message}}</span>
+									<pre><code>{{evidence}}</code></pre>
+								</a>
+							</div>
 						</li>
 					{{/each}}
 				{{/each}}
