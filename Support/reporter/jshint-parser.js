@@ -25,6 +25,7 @@
 				memo[result.file].push({
 					file: result.file,
 					line: result.error.line,
+					code: result.error.code,
 					column: result.error.character,
 					message: result.error.reason,
 					evidence: (result.error.evidence || '').replace(/^\s\s*/, '').replace(/\s\s*$/, ''),
