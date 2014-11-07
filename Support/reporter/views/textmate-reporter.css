@@ -95,6 +95,11 @@ header .additional {
 	float: right;
 }
 
+.problems .errorcode.apifail {
+	background-color: red;
+	color: white;
+}
+
 .problems .location {
 	float: right;
 	color: #b5372d;

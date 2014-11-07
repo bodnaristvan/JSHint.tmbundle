@@ -49,6 +49,9 @@
 									codelink.closest(".probrow").after(body);
 									$(".errorinfo a").attr("target", "_blank");
 								},
+								error: function() {
+									codelink.addClass("apifail");
+								},
 								dataType: 'json'
 							});
 						};
